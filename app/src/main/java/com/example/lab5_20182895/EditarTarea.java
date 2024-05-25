@@ -55,9 +55,7 @@ public class EditarTarea extends AppCompatActivity {
         binding.editSelectDateButton.setOnClickListener(v -> showDatePickerDialog());
         binding.editSelectTimeButton.setOnClickListener(v -> showTimePickerDialog());
 
-        binding.updateTaskButton.setOnClickListener(v -> updateTask());
         binding.cancelButton.setOnClickListener(v -> finish());
-        binding.deleteTaskButton.setOnClickListener(v -> deleteTask());
     }
 
     private void showDatePickerDialog() {
@@ -83,24 +81,4 @@ public class EditarTarea extends AppCompatActivity {
         timePickerDialog.show();
     }
 
-    private void updateTask() {
-        String title = editTitleEditText.getText().toString();
-        String description = editDescriptionEditText.getText().toString();
-
-        tarea.setTitulo(title);
-        tarea.setDescripcion(description);
-        tarea.setFecha(selectedDate);
-
-        Intent resultIntent = new Intent();
-        resultIntent.putExtra("task", tarea);
-        setResult(RESULT_OK, resultIntent);
-        finish();
-    }
-
-    private void deleteTask() {
-        Intent resultIntent = new Intent();
-        resultIntent.putExtra("task", tarea);
-        setResult(3, resultIntent);
-        finish();
-    }
 }
