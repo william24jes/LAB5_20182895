@@ -32,6 +32,18 @@
         android:text="Fecha no seleccionada" />
 
     <Button
+        android:id="@+id/select_time_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Seleccionar Hora" />
+
+    <TextView
+        android:id="@+id/selected_time_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hora no seleccionada" />
+
+    <Button
         android:id="@+id/save_task_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

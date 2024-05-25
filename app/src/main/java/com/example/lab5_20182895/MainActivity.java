@@ -44,8 +44,6 @@ public class MainActivity extends AppCompatActivity {
         tareaAdapter.setOnItemClickListener(new TareaAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Tarea tarea) {
-                // Implementa lo que desees hacer cuando se haga clic en un elemento del RecyclerView
-                // Por ejemplo, puedes iniciar la actividad EditTaskActivity pasando la tarea seleccionada
                 Intent intent = new Intent(MainActivity.this, EditarTarea.class);
                 intent.putExtra("task", tarea);
                 startActivity(intent);

@@ -1,6 +1,7 @@
 package com.example.lab5_20182895;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
@@ -20,6 +21,7 @@ public class EditarTarea extends AppCompatActivity {
     private EditText editTitleEditText;
     private EditText editDescriptionEditText;
     private TextView editSelectedDateTextView;
+    private TextView editSelectedTimeTextView;
     private Date selectedDate;
     private Tarea tarea;
 
@@ -32,6 +34,7 @@ public class EditarTarea extends AppCompatActivity {
         editTitleEditText = binding.editTaskTitle;
         editDescriptionEditText = binding.editTaskDescription;
         editSelectedDateTextView = binding.editSelectedDateText;
+        editSelectedTimeTextView = binding.editSelectedTimeText;
 
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra("task")) {
@@ -40,19 +43,25 @@ public class EditarTarea extends AppCompatActivity {
                 editTitleEditText.setText(tarea.getTitulo());
                 editDescriptionEditText.setText(tarea.getDescripcion());
                 selectedDate = tarea.getFecha();
-                editSelectedDateTextView.setText(selectedDate.toString());
+                if (selectedDate != null) {
+                    editSelectedDateTextView.setText(selectedDate.toString());
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTime(selectedDate);
+                    editSelectedTimeTextView.setText(String.format("%02d:%02d", calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE)));
+                }
             }
         }
 
         binding.editSelectDateButton.setOnClickListener(v -> showDatePickerDialog());
-        binding.cancelButton.setOnClickListener(v -> finish());
+        binding.editSelectTimeButton.setOnClickListener(v -> showTimePickerDialog());
 
+        binding.updateTaskButton.setOnClickListener(v -> updateTask());
+        binding.cancelButton.setOnClickListener(v -> finish());
+        binding.deleteTaskButton.setOnClickListener(v -> deleteTask());
     }
 
     private void showDatePickerDialog() {
         final Calendar calendar = Calendar.getInstance();
-        calendar.setTime(selectedDate != null ? selectedDate : new Date());
-
         DatePickerDialog datePickerDialog = new DatePickerDialog(this, (view, year, month, dayOfMonth) -> {
             calendar.set(Calendar.YEAR, year);
             calendar.set(Calendar.MONTH, month);
@@ -61,5 +70,37 @@ public class EditarTarea extends AppCompatActivity {
             editSelectedDateTextView.setText(selectedDate.toString());
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
         datePickerDialog.show();
+    }
+
+    private void showTimePickerDialog() {
+        final Calendar calendar = Calendar.getInstance();
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, (view, hourOfDay, minute) -> {
+            calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+            calendar.set(Calendar.MINUTE, minute);
+            selectedDate = calendar.getTime();  // actualizar selectedDate con la hora seleccionada
+            editSelectedTimeTextView.setText(String.format("%02d:%02d", hourOfDay, minute));
+        }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true);
+        timePickerDialog.show();
+    }
+
+    private void updateTask() {
+        String title = editTitleEditText.getText().toString();
+        String description = editDescriptionEditText.getText().toString();
+
+        tarea.setTitulo(title);
+        tarea.setDescripcion(description);
+        tarea.setFecha(selectedDate);
+
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra("task", tarea);
+        setResult(RESULT_OK, resultIntent);
+        finish();
+    }
+
+    private void deleteTask() {
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra("task", tarea);
+        setResult(3, resultIntent);
+        finish();
     }
 }

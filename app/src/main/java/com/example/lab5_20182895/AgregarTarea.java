@@ -1,6 +1,7 @@
 package com.example.lab5_20182895;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -19,6 +20,7 @@ public class AgregarTarea extends AppCompatActivity {
     private EditText titleEditText;
     private EditText descriptionEditText;
     private TextView selectedDateTextView;
+    private TextView selectedTimeTextView;
     private Date selectedDate;
     ActivityAgregarTareaBinding binding;
 
@@ -31,8 +33,10 @@ public class AgregarTarea extends AppCompatActivity {
         titleEditText = binding.taskTitle;
         descriptionEditText = binding.taskDescription;
         selectedDateTextView = binding.selectedDateText;
+        selectedTimeTextView = binding.selectedTimeText;
 
         binding.selectDateButton.setOnClickListener(v -> showDatePickerDialog());
+        binding.selectTimeButton.setOnClickListener(v -> showTimePickerDialog());
 
         Button saveTaskButton = binding.saveTaskButton;
         saveTaskButton.setOnClickListener(v -> saveTask());
@@ -48,6 +52,17 @@ public class AgregarTarea extends AppCompatActivity {
             selectedDateTextView.setText(selectedDate.toString());
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
         datePickerDialog.show();
+    }
+
+    private void showTimePickerDialog() {
+        final Calendar calendar = Calendar.getInstance();
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, (view, hourOfDay, minute) -> {
+            calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+            calendar.set(Calendar.MINUTE, minute);
+            selectedDate = calendar.getTime();  // actualizar selectedDate con la hora seleccionada
+            selectedTimeTextView.setText(String.format("%02d:%02d", hourOfDay, minute));
+        }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true);
+        timePickerDialog.show();
     }
 
     private void saveTask() {
