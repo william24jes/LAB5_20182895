@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,41 +11,95 @@
         android:id="@+id/task_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Título" />
+        android:layout_marginTop="32dp"
+        android:hint="Título"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <EditText
         android:id="@+id/task_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Descripción" />
+        android:layout_marginTop="16dp"
+        android:hint="Descripción"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/task_title" />
 
     <Button
         android:id="@+id/select_date_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Seleccionar Fecha" />
+        android:layout_width="44dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#000000"
+        android:drawableTop="@drawable/baseline_calendar_month_24"
+        app:cornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.388"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/task_description" />
 
     <TextView
         android:id="@+id/selected_date_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Fecha no seleccionada" />
+        android:layout_marginTop="28dp"
+        android:drawableTint="#FFFFFF"
+        android:text="Fecha no seleccionada"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/select_date_button" />
 
     <Button
         android:id="@+id/select_time_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Seleccionar Hora" />
+        android:layout_width="44dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#000000"
+        android:drawableTop="@drawable/baseline_access_time_24"
+        app:cornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.614"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/task_description" />
 
     <TextView
         android:id="@+id/selected_time_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hora no seleccionada" />
+        android:layout_marginTop="32dp"
+        android:text="Hora no seleccionada"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selected_date_text" />
 
     <Button
         android:id="@+id/save_task_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Guardar Tarea" />
-</LinearLayout>
+        android:layout_marginTop="252dp"
+        android:backgroundTint="#009688"
+        android:text="Guardar Tarea"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selected_time_text" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Cree una nueva tarea"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
