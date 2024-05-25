@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.lab5_20182895.databinding.ActivityEditarTareaBinding;
-import com.example.lab5_20182895.entity.Task;
+import com.example.lab5_20182895.entity.Tarea;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -21,7 +21,7 @@ public class EditarTarea extends AppCompatActivity {
     private EditText editDescriptionEditText;
     private TextView editSelectedDateTextView;
     private Date selectedDate;
-    private Task task;
+    private Tarea tarea;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +35,11 @@ public class EditarTarea extends AppCompatActivity {
 
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra("task")) {
-            task = (Task) intent.getSerializableExtra("task");
-            if (task != null) {
-                editTitleEditText.setText(task.getTitulo());
-                editDescriptionEditText.setText(task.getDescripcion());
-                selectedDate = task.getFecha();
+            tarea = (Tarea) intent.getSerializableExtra("task");
+            if (tarea != null) {
+                editTitleEditText.setText(tarea.getTitulo());
+                editDescriptionEditText.setText(tarea.getDescripcion());
+                selectedDate = tarea.getFecha();
                 editSelectedDateTextView.setText(selectedDate.toString());
             }
         }

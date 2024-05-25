@@ -9,21 +9,21 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lab5_20182895.R;
-import com.example.lab5_20182895.entity.Task;
+import com.example.lab5_20182895.entity.Tarea;
 
 import java.util.List;
 
 public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TaskViewHolder> {
 
-    private List<Task> taskList;
+    private List<Tarea> tareaList;
     private OnItemClickListener mListener;
 
     public interface OnItemClickListener {
-        void onItemClick(Task task);
+        void onItemClick(Tarea tarea);
     }
 
-    public TareaAdapter(List<Task> taskList) {
-        this.taskList = taskList;
+    public TareaAdapter(List<Tarea> tareaList) {
+        this.tareaList = tareaList;
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
@@ -39,15 +39,15 @@ public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TaskViewHold
 
     @Override
     public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
-        Task task = taskList.get(position);
-        holder.bind(task);
+        Tarea tarea = tareaList.get(position);
+        holder.bind(tarea);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int position = holder.getAdapterPosition();
                 if (position != RecyclerView.NO_POSITION && mListener != null) {
-                    Task task = taskList.get(position);
-                    mListener.onItemClick(task);
+                    Tarea tarea = tareaList.get(position);
+                    mListener.onItemClick(tarea);
                 }
             }
         });
@@ -55,7 +55,7 @@ public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TaskViewHold
 
     @Override
     public int getItemCount() {
-        return taskList.size();
+        return tareaList.size();
     }
 
     public static class TaskViewHolder extends RecyclerView.ViewHolder {
@@ -74,11 +74,11 @@ public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TaskViewHold
             dueDateTextView = itemView.findViewById(R.id.recFecha);
         }
 
-        public void bind(Task task) {
+        public void bind(Tarea tarea) {
             // Establecer los valores de las vistas con los datos de la tarea
-            titleTextView.setText(task.getTitulo());
-            descriptionTextView.setText(task.getDescripcion());
-            dueDateTextView.setText(task.getFecha().toString());
+            titleTextView.setText(tarea.getTitulo());
+            descriptionTextView.setText(tarea.getDescripcion());
+            dueDateTextView.setText(tarea.getFecha().toString());
         }
     }
 }

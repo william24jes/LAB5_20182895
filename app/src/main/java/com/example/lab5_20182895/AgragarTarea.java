@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.lab5_20182895.databinding.ActivityAgregarTareaBinding;
-import com.example.lab5_20182895.entity.Task;
+import com.example.lab5_20182895.entity.Tarea;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -54,9 +54,9 @@ public class AgragarTarea extends AppCompatActivity {
         String title = titleEditText.getText().toString();
         String description = descriptionEditText.getText().toString();
 
-        Task task = new Task(title, description, selectedDate);
+        Tarea tarea = new Tarea(title, description, selectedDate);
         Intent resultIntent = new Intent();
-        resultIntent.putExtra("task", task);
+        resultIntent.putExtra("task", tarea);
         setResult(RESULT_OK, resultIntent);
         finish();
     }

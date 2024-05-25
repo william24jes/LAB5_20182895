@@ -3,12 +3,12 @@ package com.example.lab5_20182895.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Task implements Serializable {
+public class Tarea implements Serializable {
     private String titulo;
     private String descripcion;
     private Date fecha;
 
-    public Task(String title, String descripcion, Date fecha) {
+    public Tarea(String title, String descripcion, Date fecha) {
         this.titulo = title;
         this.descripcion = descripcion;
         this.fecha = fecha;

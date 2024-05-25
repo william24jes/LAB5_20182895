@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lab5_20182895.Adapter.TareaAdapter;
 import com.example.lab5_20182895.databinding.ActivityMainBinding;
-import com.example.lab5_20182895.entity.Task;
+import com.example.lab5_20182895.entity.Tarea;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -25,7 +25,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
-    private List<Task> taskList;
+    private List<Tarea> tareaList;
     private TareaAdapter tareaAdapter;
 
     @Override
@@ -34,8 +34,8 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        taskList = new ArrayList<>();
-        tareaAdapter = new TareaAdapter(taskList);
+        tareaList = new ArrayList<>();
+        tareaAdapter = new TareaAdapter(tareaList);
 
         RecyclerView recyclerView = binding.taskRecyclerView;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -43,11 +43,11 @@ public class MainActivity extends AppCompatActivity {
 
         tareaAdapter.setOnItemClickListener(new TareaAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(Task task) {
+            public void onItemClick(Tarea tarea) {
                 // Implementa lo que desees hacer cuando se haga clic en un elemento del RecyclerView
                 // Por ejemplo, puedes iniciar la actividad EditTaskActivity pasando la tarea seleccionada
                 Intent intent = new Intent(MainActivity.this, EditarTarea.class);
-                intent.putExtra("task", task);
+                intent.putExtra("task", tarea);
                 startActivity(intent);
             }
         });
@@ -69,8 +69,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
-            Task newTask = (Task) data.getSerializableExtra("task");
-            taskList.add(newTask);
+            Tarea newTarea = (Tarea) data.getSerializableExtra("task");
+            tareaList.add(newTarea);
             tareaAdapter.notifyDataSetChanged();
             saveTasks();
         }
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         // Guardar las tareas en el almacenamiento interno
         try (FileOutputStream fos = openFileOutput("tasks.dat", MODE_PRIVATE);
              ObjectOutputStream oos = new ObjectOutputStream(fos)) {
-            oos.writeObject(new ArrayList<>(taskList));
+            oos.writeObject(new ArrayList<>(tareaList));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         // Cargar las tareas desde el almacenamiento interno
         try (FileInputStream fis = openFileInput("tasks.dat");
              ObjectInputStream ois = new ObjectInputStream(fis)) {
-            taskList.addAll((List<Task>) ois.readObject());
+            tareaList.addAll((List<Tarea>) ois.readObject());
             tareaAdapter.notifyDataSetChanged();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
