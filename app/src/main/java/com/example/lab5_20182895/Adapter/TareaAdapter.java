@@ -76,9 +76,9 @@ public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TaskViewHold
 
         public void bind(Task task) {
             // Establecer los valores de las vistas con los datos de la tarea
-            titleTextView.setText(task.getTitle());
-            descriptionTextView.setText(task.getDescription());
-            dueDateTextView.setText(task.getDueDate().toString());
+            titleTextView.setText(task.getTitulo());
+            descriptionTextView.setText(task.getDescripcion());
+            dueDateTextView.setText(task.getFecha().toString());
         }
     }
 }

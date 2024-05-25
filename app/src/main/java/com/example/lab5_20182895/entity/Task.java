@@ -4,43 +4,45 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Task implements Serializable {
-    private String title;
-    private String description;
-    private Date dueDate;
+    private String titulo;
+    private String descripcion;
+    private Date fecha;
 
-    public Task(String title, String description, Date dueDate) {
-        this.title = title;
-        this.description = description;
-        this.dueDate = dueDate;
+    public Task(String title, String descripcion, Date fecha) {
+        this.titulo = title;
+        this.descripcion = descripcion;
+        this.fecha = fecha;
     }
 
     // Getters y setters
-    public String getTitle() {
-        return title;
+
+
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
-    public Date getDueDate() {
-        return dueDate;
+    public Date getFecha() {
+        return fecha;
     }
 
-    public void setDueDate(Date dueDate) {
-        this.dueDate = dueDate;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
     @Override
     public String toString() {
-        return "Título: " + title + ", Descripción: " + description + ", Fecha de vencimiento: " + dueDate.toString();
+        return "Título: " + titulo + ", Descripción: " + descripcion + ", Fecha de vencimiento: " + fecha.toString();
     }
 }

@@ -32,8 +32,7 @@ public class AgragarTarea extends AppCompatActivity {
         descriptionEditText = binding.taskDescription;
         selectedDateTextView = binding.selectedDateText;
 
-        Button selectDateButton = binding.selectDateButton;
-        selectDateButton.setOnClickListener(v -> showDatePickerDialog());
+        binding.selectDateButton.setOnClickListener(v -> showDatePickerDialog());
 
         Button saveTaskButton = binding.saveTaskButton;
         saveTaskButton.setOnClickListener(v -> saveTask());
