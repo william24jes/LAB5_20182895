@@ -14,7 +14,7 @@ import com.example.lab5_20182895.entity.Tarea;
 import java.util.Calendar;
 import java.util.Date;
 
-public class AgragarTarea extends AppCompatActivity {
+public class AgregarTarea extends AppCompatActivity {
 
     private EditText titleEditText;
     private EditText descriptionEditText;

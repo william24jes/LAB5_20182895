@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AgragarTarea.class);
+                Intent intent = new Intent(MainActivity.this, AgregarTarea.class);
                 startActivityForResult(intent, 1);
             }
         });
